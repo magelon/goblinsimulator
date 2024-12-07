@@ -1,0 +1,233 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background: #f5f5f5;
+    padding: 10px;
+}
+
+/* Mobile-first layout */
+#game-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+#stats-panel, #inventory-panel {
+    background: #f0f0f0;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#story-panel {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    max-height: 60vh; /* Limit height on larger screens */
+}
+
+#story-text {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    overflow-y: auto;
+    flex-grow: 1;
+    padding-right: 10px;
+    /* Smooth scrolling */
+    scroll-behavior: smooth;
+}
+
+/* Custom scrollbar styling */
+#story-text::-webkit-scrollbar {
+    width: 8px;
+}
+
+#story-text::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+#story-text::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+#story-text::-webkit-scrollbar-thumb:hover {
+    background: #666;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    #story-panel {
+        max-height: 50vh;
+    }
+}
+
+#inventory-slots {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.inventory-item {
+    background: #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+
+.item-description {
+    font-size: 0.8em;
+    color: #666;
+}
+
+.inventory-item button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.inventory-item button:active {
+    background: #45a049;
+}
+
+.choice-button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background 0.2s;
+}
+
+.choice-button:active {
+    background: #45a049;
+}
+
+/* Stats styling */
+#stats-panel h2, #inventory-panel h2 {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+#stats-panel p {
+    margin: 5px 0;
+    font-size: 1.1em;
+}
+
+/* Tablet and desktop styles */
+@media (min-width: 768px) {
+    #game-container {
+        display: grid;
+        grid-template-columns: 200px 1fr 200px;
+        max-width: 1200px;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .choice-button {
+        padding: 12px;
+        font-size: 1em;
+    }
+
+    .inventory-item {
+        font-size: 1em;
+    }
+}
+
+/* Touch-specific improvements */
+@media (hover: none) {
+    .choice-button, .inventory-item {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .choice-button:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Safe area adjustments for notched phones */
+@supports (padding: max(0px)) {
+    body {
+        padding-left: max(10px, env(safe-area-inset-left));
+        padding-right: max(10px, env(safe-area-inset-right));
+        padding-bottom: max(10px, env(safe-area-inset-bottom));
+    }
+}
+
+/* Add EXP bar styles */
+.exp-container {
+    background: #2c3e50;
+    border-radius: 10px;
+    height: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+#exp-bar {
+    background: #3498db;
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* Level up animation */
+.level-up-effect {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    color: #f1c40f;
+    text-shadow: 0 0 10px #f39c12;
+    animation: levelUp 2s ease-out forwards;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+@keyframes levelUp {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Update stats panel for EXP display */
+#stats-panel p.exp-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+} 

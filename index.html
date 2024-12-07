@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Goblin's New Life</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="stats-panel">
+            <h2>Goblin Stats</h2>
+            <p>Level: <span id="level">1</span></p>
+            <p>Health: <span id="health">100</span>/<span id="maxHealth">100</span></p>
+            <p>Attack: <span id="attack">10</span></p>
+            <p>Defense: <span id="defense">5</span></p>
+            <p class="exp-stat">
+                EXP: <span id="exp">0</span>/<span id="expNeeded">100</span>
+                <div class="exp-container">
+                    <div id="exp-bar"></div>
+                </div>
+            </p>
+        </div>
+
+        <div id="story-panel">
+            <div id="story-text"></div>
+            <div id="choices"></div>
+        </div>
+
+        <div id="inventory-panel">
+            <h2>Inventory</h2>
+            <div id="inventory-slots"></div>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html> 
